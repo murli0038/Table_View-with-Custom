@@ -8,8 +8,30 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
+{
+    let Studentdetail = [   ["Name":"Murli","Grade":"A+"],                                          //Array
+                            ["Name":"Yogesh","Grade":"B+"],
+                            ["Name":"Daivat","Grade":"A+"],
+                            ["Name":"Dhruv","Grade":"C+"]
+                        ]
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let details = Studentdetail[indexPath.row]
+                                                                                                    //cellForRowat
+        cell.textLabel?.text = details["Name"]
+        cell.detailTextLabel?.text = details ["Grade"]
 
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return Studentdetail.count
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
